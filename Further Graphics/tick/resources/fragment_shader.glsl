@@ -52,9 +52,51 @@ float cube(vec3 p) {
     return min(max(d.x, max(d.y, d.z)), 0.0) + length(max(d, 0.0));
 }
 
+vec3 translate(vec3 pt, vec3 dir){
+    return pt - dir;
+}
+
+float unionSDF(float a, float b){
+    return min(a,b);
+}
+
+float differenceSDF(float a, float b){
+    return max(a,-b);
+}
+
+float intersectSDF(float a, float b){
+    return max(a,b);
+}
+
+float blendSDF(float a, float b ){
+    float k = 0.2;
+    float h = clamp(0.5+0.5*(b-a)/k,0,1);
+
+    return mix(b,a,h) - k*h*(1-h);
+}
+
+
+float task2SDF(vec3 pos){
+      float d = unionSDF(cube(translate(pos, vec3(-3,0,-3))),
+                    sphere(translate(pos, vec3(-3,0,-3)+vec3(1,0,1))));
+      d = unionSDF(d,
+                     differenceSDF(cube(translate(pos, vec3(3,0,-3))),
+                               sphere(translate(pos, vec3(3,0,-3)+vec3(1,0,1)))));
+      d = unionSDF(d,
+                     blendSDF(cube(translate(pos, vec3(-3,0,3))),
+                               sphere(translate(pos, vec3(-3,0,3)+vec3(1,0,1)))));
+      d = unionSDF(d,
+                intersectSDF(cube(translate(pos, vec3(3,0,3))),
+                          sphere(translate(pos, vec3(3,0,3)+vec3(1,0,1)))));
+     return d;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 vec3 getNormal(vec3 pt) {
-  return normalize(GRADIENT(pt, cube));
+  return normalize(GRADIENT(pt, task2SDF));
 }
 
 vec3 getColor(vec3 pt) {
@@ -62,6 +104,7 @@ vec3 getColor(vec3 pt) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
 
 float shade(vec3 eye, vec3 pt, vec3 n) {
   float val = 0;
@@ -89,9 +132,9 @@ vec3 raymarch(vec3 camPos, vec3 rayDir) {
   float t = 0;
 
   for (float d = 1000; step < RENDER_DEPTH && abs(d) > CLOSE_ENOUGH; t += abs(d)) {
-    d = cube(camPos + t * rayDir);
-    step++;
-  }
+      d = task2SDF(camPos + t * rayDir);
+      step++;
+    }
 
   if (step == RENDER_DEPTH) {
     return getBackground(rayDir);

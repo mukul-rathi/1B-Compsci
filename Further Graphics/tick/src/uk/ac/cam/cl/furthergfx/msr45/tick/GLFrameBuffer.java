@@ -1,4 +1,4 @@
-package uk.ac.cam.cl.furthergfx.crsid.tick;
+package uk.ac.cam.cl.furthergfx.msr45.tick;
 
 import static org.lwjgl.opengl.GL11.GL_INT;
 import static org.lwjgl.opengl.GL11.GL_LINEAR;

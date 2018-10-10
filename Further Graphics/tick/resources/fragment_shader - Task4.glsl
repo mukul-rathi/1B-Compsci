@@ -101,11 +101,12 @@ float task3SDF(vec3 pos){
 }
 
 float torusSDF(vec3 pos){
+    pos = translate(pos, vec3(0,3,0));
     vec2 q = vec2(length(pos.xz) - 3, pos.y);
     return length(q) - 1;
 }
 float task4SDF(vec3 pos){
-    return unionSDF(torusSDF(translate(pos, vec3(0,3,0))), planeSDF(pos));
+    return unionSDF(torusSDF(pos), planeSDF(pos));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -116,9 +117,9 @@ vec3 getNormal(vec3 pt) {
 }
 
 vec3 getColor(vec3 pt) {
-    if(planeSDF(pt)<0.01){
-        float distance = mod(torusSDF(translate(pt, vec3(0,3,0))),5);
-        if(distance>4.75){
+    if(planeSDF(pt)<0.001){
+        float distance = mod(torusSDF(pt),5);
+        if(distance>=4.75){
         return vec3(0,0,0);
         }
         distance = mod(distance, 1);
@@ -139,7 +140,7 @@ float shade(vec3 eye, vec3 pt, vec3 n) {
   for (int i = 0; i < LIGHT_POS.length(); i++) {
     vec3 l = normalize(LIGHT_POS[i] - pt);
     val += max(dot(normalize(n), l), 0);
-    val += max(pow(dot(normalize(pt-eye),normalize(reflect(l, n))),256), 0);
+    val += pow(max(dot(normalize(pt-eye),normalize(reflect(l, n))), 0),256);
   }
   return val;
 }

@@ -110,9 +110,9 @@ vec3 getNormal(vec3 pt) {
 }
 
 vec3 getColor(vec3 pt) {
-    if(planeSDF(pt)<0.01){
+    if(planeSDF(pt)<0.001){
         float distance = mod(task2SDF(pt),5);
-        if(distance>4.75){
+        if(distance>=4.75){
         return vec3(0,0,0);
         }
         distance = mod(distance, 1);

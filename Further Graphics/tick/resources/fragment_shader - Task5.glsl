@@ -129,7 +129,7 @@ vec3 getNormal(vec3 pt) {
 vec3 getColor(vec3 pt) {
     if(planeSDF(pt)<0.01){
         float distance = mod(torus_xySDF(pt),5);
-        if(distance<0.25 && torus_xySDF(pt)>0.25){
+        if(distance>4.75){
         return vec3(0,0,0);
         }
         distance = mod(distance, 1);

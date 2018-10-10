@@ -118,7 +118,7 @@ vec3 getNormal(vec3 pt) {
 vec3 getColor(vec3 pt) {
     if(planeSDF(pt)<0.01){
         float distance = mod(torusSDF(translate(pt, vec3(0,3,0))),5);
-        if(distance<0.25 && torusSDF(translate(pt, vec3(0,3,0)))>0.25){
+        if(distance>4.75){
         return vec3(0,0,0);
         }
         distance = mod(distance, 1);
@@ -133,11 +133,11 @@ vec3 getColor(vec3 pt) {
 
 float shade(vec3 eye, vec3 pt, vec3 n) {
   float val = 0;
-  
+
   val += 0.1;  // Ambient
-  
+
   for (int i = 0; i < LIGHT_POS.length(); i++) {
-    vec3 l = normalize(LIGHT_POS[i] - pt); 
+    vec3 l = normalize(LIGHT_POS[i] - pt);
     val += max(dot(normalize(n), l), 0);
     val += max(pow(dot(normalize(pt-eye),normalize(reflect(l, n))),256), 0);
   }

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define SWAP(t,x,y) {t tmp = x; x=y; y = tmp;}
+//didn't get the SWAP macro without using a temp variable - can we go through this in the supervision?"
 int cntlower(char str[], unsigned int len){
 	int count=0;
 	for(int i=0; i<len; i++){
@@ -56,5 +58,12 @@ int main(void){
 	printf("SORTED: ");
 	for(int j=0; j<len; j++) printf("%d ,", i[j]);	
 	printf("\n");
+
+
+	int x = 10;
+	int y = 5;
+	printf("Before x: %d and y: %d\n",x,y);
+	SWAP(int, x,y);
+	printf("After x: %d and y: %d\n",x,y);
 	return 0;
 }

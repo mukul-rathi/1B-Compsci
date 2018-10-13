@@ -22,7 +22,6 @@ int tree_member(int x, Tree *tree) {
 }
 
 Tree *tree_insert(int x, Tree *tree) { 
-  /* TODO */
 	if(tree==NULL){
 		Tree *newTree = (Tree *)malloc(sizeof(Tree));
 		newTree->value=x;
@@ -43,7 +42,9 @@ Tree *tree_insert(int x, Tree *tree) {
 }
 
 void tree_free(Tree *tree) { 
-  /* TODO */
+  // NB: the struct provided has no parent pointer so we cannot
+// update parent to reflect that they no longer have a child 
+// so we have a dangling pointer. 
 	if(tree!=NULL){
 		tree_free(tree->left);
 		tree_free(tree->right);
@@ -55,10 +56,62 @@ void tree_free(Tree *tree) {
 /* CHALLENGE EXERCISE */ 
 
 void pop_minimum(Tree *tree, int *min, Tree **new_tree) { 
-  /* TODO */
+	*new_tree = tree;
+	if(tree==NULL){
+		min = NULL;
+	}
+	else{
+		Tree *currNode = tree;
+		Tree *prevNode = NULL;
+		while(currNode->left !=NULL){ 
+		//repeatedly traverse down left subtree to find min
+			prevNode = currNode;
+			currNode = currNode->left;
+		}
+		//currNode is min node, prev node is parent
+		*min = currNode->value;
+		tree_free(currNode);
+		if(prevNode==NULL){
+			*new_tree = empty;
+		}
+		else{
+			prevNode->left = empty;
+		}
+	}
+
+
 }
 
 Tree *tree_remove(int x, Tree *tree) { 
   /* TODO */
-  return empty;
-}
+ 	if(tree==NULL){ //x not present
+		return empty;
+	}
+	else{
+		if(x<tree->value){
+			tree->left = tree_remove(x, tree->left);
+		}
+		else if(x>tree->value){
+			tree->right = tree_remove(x, tree->right);
+		}
+		else{ //x==tree->value
+			//if only one subtree, shift up
+			if(tree->right==NULL){
+				tree = tree->left;
+			}
+			else if(tree->left==NULL){
+				tree = tree->right;
+			}
+			else{
+				int *min = &x;
+		 		//delete min of right subtree
+				pop_minimum(tree->right, min, &(tree->right));
+				tree->value = *min; //copy across min value
+			}
+		}
+
+		return tree;
+	}
+}	 		
+ 
+

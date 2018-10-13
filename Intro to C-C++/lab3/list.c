@@ -70,16 +70,10 @@ List *merge(List *list1, List *list2) {
 }
 
 void split(List *list, List **list1, List **list2) { 
-  if(list!=NULL){
-    *list1 = list;
-    if(list->tail != NULL){
-    *list2 = list->tail;
-    }
-    (*list1)->tail=NULL;
-  }
-  else{
-    *list1 = NULL;
-    *list2 = NULL;
+*list1 = list;
+*list2 = list;
+if(list!=NULL){
+	split(list->tail, list2, &((*list1)->tail));
 }
 }
 
@@ -93,8 +87,6 @@ List *mergeSort(List *list) {
     List *list1;
     List *list2;
     split(list, &list1, &list2);
-    print_list(list1);
-    print_list(list2);
     list1 = mergeSort(list1);
     list2 = mergeSort(list2);
     return merge(list1, list2);

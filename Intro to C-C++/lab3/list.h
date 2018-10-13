@@ -11,7 +11,7 @@ typedef struct List List;
 /* Functions you get */
 
 List *cons(int head, List *tail);
-List mergeSort(List *list);
+List *mergeSort(List *list);
 
 /* Basic exercises */
 
@@ -23,7 +23,7 @@ void print_list(List *list);
 
 /* Challenge exercises */
 
-List mergeLists(List *list1, List *list2);
+List *merge(List *list1, List *list2);
 
 void split(List *list, List **list1, List **list2);
 

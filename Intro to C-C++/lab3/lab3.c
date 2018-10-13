@@ -22,7 +22,7 @@ int main(void) {
   int n = sum(test);
   printf("Sum = %d\n", n);
 
-  *test = mergeSort(test);
+  test = mergeSort(test);
   print_list(test);
 
   return 0;

@@ -44,53 +44,59 @@ void print_list(List *list) {
 
 /**** CHALLENGE PROBLEMS ****/
 
-List mergeLists(List *list1, List *list2) { 
+List *merge(List *list1, List *list2) { 
   //base cases
   if(list1 == NULL){
-    return *list2;
+    return list2;
   }
   if(list2 == NULL){
-    return *list1;
+    return list1;
   }
   //compare heads
- if(list1->head > list2->head){
+ if(list1->head < list2->head){
    if(list1->tail==NULL){ 
      list1->tail = list2;
    }
    else{
-  *list1->tail = mergeLists(list1->tail, list2);
+    list1->tail = merge(list1->tail, list2);
    }
-  return *list1;
+  return list1;
 
  }
  else{
    //swap lists - avoiding code duplication
-//return mergeLists(list2,list1);
+   return merge(list2,list1);
  }
 }
 
 void split(List *list, List **list1, List **list2) { 
-  *list1 = list;
-  *list2 = list;
   if(list!=NULL){
-    split(list->tail, list2, &(*list1)->tail);
+    *list1 = list;
+    if(list->tail != NULL){
+    *list2 = list->tail;
+    }
+    (*list1)->tail=NULL;
   }
+  else{
+    *list1 = NULL;
+    *list2 = NULL;
+}
 }
 
 /* You get the mergesort implementation for free. But it won't
    work unless you implement merge() and split() first! */
 
-List mergeSort(List *list) { 
+List *mergeSort(List *list) { 
   if (list == NULL || list->tail == NULL) { 
-    return *list;
+    return list;
   } else { 
     List *list1;
     List *list2;
     split(list, &list1, &list2);
     print_list(list1);
     print_list(list2);
-    *list1 = mergeSort(list1);
-    *list2 = mergeSort(list2);
-    return mergeLists(list1, list2);
+    list1 = mergeSort(list1);
+    list2 = mergeSort(list2);
+    return merge(list1, list2);
   }
 }

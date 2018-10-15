@@ -136,8 +136,8 @@ float torus_horizSDF(vec3 pos){ //xy plane for task 5, xz for task 4
 float torus_interlockingSDF(vec3 pt){
         pt = translate(pt, vec3(4,0,4));
         float d =  unionSDF(torus_flatSDF( vec3(mod(pt.x,8)-4, pt.y, mod(pt.z,8)-4)),
-                    torus_vertSDF(vec3(mod(pt.x-4,8)-4, pt.y, mod(pt.z-4,8))));
-             d = unionSDF(d,torus_horizSDF(vec3(mod(pt.x-4,8), pt.y, mod(pt.z-4,8)-4)));
+                    torus_vertSDF(vec3(mod(pt.x,8)-4, pt.y, mod(pt.z,8)-4)));
+             d = unionSDF(d,torus_horizSDF(vec3(mod(pt.x,8)-4, pt.y, mod(pt.z,8)-4)));
             return d;
  }
 float task6SDF(vec3 pt){

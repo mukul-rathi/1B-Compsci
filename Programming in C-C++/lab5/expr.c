@@ -3,7 +3,7 @@
 #include "expr.h"
 
 expr_t mkLit(int n) { 
-  expr_t e;
+  expr_t e = malloc(sizeof(struct expr));
   e->type = LIT;
   e->data.literal = n;
   return e;
@@ -32,9 +32,13 @@ void free_expr(expr_t e) {
       free(e);
       break;
     case PLUS:
-    case TIMES: {
-      free_expr(e->data.args.fst);
-      free_expr(e->data.args.fst);
+    case TIMES: {	
+      //if there are 2 pointers to the same object, only free the object once
+      if(e->data.args.fst != e->data.args.snd){
+        free_expr(e->data.args.fst);
+      } 
+        free_expr(e->data.args.snd);
+      
       free(e);
       break;
     }

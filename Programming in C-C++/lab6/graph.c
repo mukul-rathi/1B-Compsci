@@ -18,7 +18,6 @@ Node *node(int value, Node *left, Node *right) {
 /* Basic Problems */
 
 int size(Node *node) { 
-  /* TODO */
 	if(node==NULL || node->marked){
 		return 0;
 	}	
@@ -52,20 +51,26 @@ bool cyclic(Node *node) {
 /* Challenge problems */
 
 void get_nodes(Node *node, Node **dest) { 
+	static int counter =0;
+  if(dest[0]==NULL){	//we have a new buffer so start counting from 0 again
+		counter=0;
+	}
 	if(node!=NULL && !node->marked){
 		node->marked = true;
-		*dest = node;
-	//	get_nodes(node->left, ++dest);
-	//	get_nodes(node->right, dest);
+		dest[counter++] = node;
+		get_nodes(node->left, dest);
+		get_nodes(node->right, dest);
 	}
 }
 
 void graph_free(Node *node) { 
   /* TODO */
+  unmark(node);
   int n = size(node);
 	unmark(node);
-	Node * dest[n] = {NULL};
-  get_nodes(node, dest);
+	Node * dest[n];
+  dest[0] = NULL; //used to indicate when to reset counter in get_nodes
+	get_nodes(node, dest);
 	for(int i=0; i<n; i++){
 			free(dest[i]);
 	}

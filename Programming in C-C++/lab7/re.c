@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "re.h"
+#include <string.h>
+
 
 arena_t create_arena(int size) { 
-  /* TODO */
   arena_t a =(arena_t) malloc(sizeof(struct arena));
 	a->regexps = (Regexp *) malloc(size*sizeof(Regexp));
 	a->space = size;
@@ -17,8 +18,7 @@ void arena_free(arena_t a) {
 }
 
 Regexp *re_alloc(arena_t a) { 
-  /* TODO */
-  if(a->space<=0){
+	if(a->space<=0){
 		return NULL;
 	}
 	else{
@@ -28,7 +28,6 @@ Regexp *re_alloc(arena_t a) {
 }
 
 Regexp *re_chr(arena_t a, char c) { 
-  /* TODO */
 	Regexp *re = re_alloc(a);
 	if(re!=NULL){
 		re->data.chr = c;
@@ -38,8 +37,6 @@ Regexp *re_chr(arena_t a, char c) {
 }
 
 Regexp *re_alt(arena_t a, Regexp *r1, Regexp *r2) { 
-  /* TODO */
-
 	Regexp *re = re_alloc(a);
 	if(re!=NULL){
 		re->data.pair.fst = r1;
@@ -50,7 +47,6 @@ Regexp *re_alt(arena_t a, Regexp *r1, Regexp *r2) {
 }
 
 Regexp *re_seq(arena_t a, Regexp *r1, Regexp *r2) { 
-  /* TODO */
 	Regexp *re = re_alloc(a);
 	if(re!=NULL){
 		re->data.pair.fst = r1;
@@ -61,8 +57,28 @@ Regexp *re_seq(arena_t a, Regexp *r1, Regexp *r2) {
 }
 
 int re_match(Regexp *r, char *s, int i) { 
-  /* TODO */
-  return -1;
+  int j=-1;
+	if (r != NULL && i>=0 && i<strlen(s)) { 
+    switch (r->type) {
+    case CHR:
+				if(s[i]==r->data.chr){
+					return i+1;
+			}
+			else{
+					return -1;
+			}
+      break;
+    case SEQ:
+			i = re_match(r->data.pair.fst, s, i);
+			return re_match(r->data.pair.snd, s, i);
+    case ALT:
+			 j = re_match(r->data.pair.fst, s, i);
+			return (j>=0)? j : re_match(r->data.pair.snd, s, i);
+    }
+  } 
+	else {// null regex or invalid index into string 
+			return -1;
+  }
 }
 
 

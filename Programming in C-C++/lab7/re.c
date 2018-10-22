@@ -4,15 +4,16 @@
 
 arena_t create_arena(int size) { 
   /* TODO */
-  arena_t a =(arena_t) malloc(sizeof(arena_t));
+  arena_t a =(arena_t) malloc(sizeof(struct arena));
 	a->regexps = (Regexp *) malloc(size);
 	a->space = size/sizeof(Regexp);	
   return a;
 }
 
 void arena_free(arena_t a) { 
-  free(a->regexps);
-	free(a);
+	if(a!=NULL){
+		free(a);
+	}
 }
 
 Regexp *re_alloc(arena_t a) { 

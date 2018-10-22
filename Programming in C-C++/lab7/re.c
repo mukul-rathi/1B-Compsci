@@ -4,31 +4,59 @@
 
 arena_t create_arena(int size) { 
   /* TODO */
-  return NULL;
+  arena_t a =(arena_t) malloc(sizeof(arena_t));
+	a->regexps = (Regexp *) malloc(size);
+	a->space = size/sizeof(Regexp);	
+  return a;
 }
 
 void arena_free(arena_t a) { 
-  /* TODO */
+  free(a->regexps);
+	free(a);
 }
 
 Regexp *re_alloc(arena_t a) { 
   /* TODO */
-  return NULL;
+  if(a->space<=0){
+		return NULL;
+	}
+	else{
+		a->space--;
+		return a->regexps++;
+	}
 }
 
 Regexp *re_chr(arena_t a, char c) { 
   /* TODO */
-  return NULL;
+	Regexp *re = re_alloc(a);
+	if(re!=NULL){
+		re->data.chr = c;
+		re->type = CHR;
+}
+  return re;
 }
 
 Regexp *re_alt(arena_t a, Regexp *r1, Regexp *r2) { 
   /* TODO */
-  return NULL;
+
+	Regexp *re = re_alloc(a);
+	if(re!=NULL){
+		re->data.pair.fst = r1;
+		re->data.pair.snd = r2;
+		re->type = ALT;
+}
+  return re;
 }
 
 Regexp *re_seq(arena_t a, Regexp *r1, Regexp *r2) { 
   /* TODO */
-  return NULL;
+	Regexp *re = re_alloc(a);
+	if(re!=NULL){
+		re->data.pair.fst = r1;
+		re->data.pair.snd = r2;
+		re->type = SEQ;
+}
+  return re;
 }
 
 int re_match(Regexp *r, char *s, int i) { 

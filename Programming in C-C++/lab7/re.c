@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "re.h"
-#include <string.h>
 
 
 arena_t create_arena(int size) { 
@@ -58,7 +57,7 @@ Regexp *re_seq(arena_t a, Regexp *r1, Regexp *r2) {
 
 int re_match(Regexp *r, char *s, int i) { 
   int j=-1;
-	if (r != NULL && i>=0 && i<strlen(s)) { 
+	if (r != NULL && i>=0 && s[i]!='\0') { 
     switch (r->type) {
     case CHR:
 				if(s[i]==r->data.chr){

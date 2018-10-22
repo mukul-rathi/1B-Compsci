@@ -2,36 +2,50 @@
 #include <stdbool.h>
 
 matrix_t matrix_create(int rows, int cols) { 
-  /* TODO */
-  matrix_t m = {0, 0, NULL};
+  matrix_t m = {rows,cols, (double *) calloc(cols*rows,sizeof(double))};
   return m;
 }
 
 double matrix_get(matrix_t m, int r, int c) { 
-  /* TODO */
   assert(r < m.rows && c < m.cols);
-  return 0.0;
+  return m.elts[m.cols*r+c];
 }
 
 void matrix_set(matrix_t m, int r, int c, double d) { 
   assert(r < m.rows && c < m.cols);
-  /* TODO */
+  m.elts[m.cols*r+c] = d;
 }
 
 
 void matrix_free(matrix_t m) { 
-  /* TODO */
+	free(&m);
 }
 
 matrix_t matrix_multiply(matrix_t m1, matrix_t m2) { 
   /* TODO */
-  matrix_t m = {0, 0, NULL};
-  return m;
+  matrix_t m = {m1.rows, m2.cols, (double *) calloc(m1.rows*m2.cols,sizeof(double))};
+	double sum =0;
+	for(int r=0; r<m1.rows; r++){
+		for(int c=0; c<m2.cols; c++){
+			sum = 0;
+			for(int a=0; a<m1.cols; a++){
+				sum+= matrix_get(m1,r,a)*matrix_get(m2,a,c);
+			}
+			matrix_set(m, r,c, sum);		
+		}
+	}
+	return m;
+	
 }
 
 matrix_t matrix_transpose(matrix_t m) { 
   /* TODO */
-  matrix_t t = {0, 0, NULL}; 
+  matrix_t t = {m.cols, m.rows,  (double *) calloc(m.cols*m.rows,sizeof(double))};
+	for(int r=0; r<t.rows; r++){
+		for(int c=0; c<t.cols; c++){
+			matrix_set(t,r,c, matrix_get(m, c,r));
+		}
+	}
   return t;
 }
 

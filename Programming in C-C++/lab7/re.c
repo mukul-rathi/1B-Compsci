@@ -5,8 +5,8 @@
 arena_t create_arena(int size) { 
   /* TODO */
   arena_t a =(arena_t) malloc(sizeof(struct arena));
-	a->regexps = (Regexp *) malloc(size);
-	a->space = size/sizeof(Regexp);	
+	a->regexps = (Regexp *) malloc(size*sizeof(Regexp));
+	a->space = size;
   return a;
 }
 

@@ -22,7 +22,6 @@ void matrix_free(matrix_t m) {
 }
 
 matrix_t matrix_multiply(matrix_t m1, matrix_t m2) { 
-  /* TODO */
   matrix_t m = {m1.rows, m2.cols, (double *) calloc(m1.rows*m2.cols,sizeof(double))};
 	double sum =0;
 	for(int r=0; r<m1.rows; r++){
@@ -39,7 +38,6 @@ matrix_t matrix_multiply(matrix_t m1, matrix_t m2) {
 }
 
 matrix_t matrix_transpose(matrix_t m) { 
-  /* TODO */
   matrix_t t = {m.cols, m.rows,  (double *) calloc(m.cols*m.rows,sizeof(double))};
 	for(int r=0; r<t.rows; r++){
 		for(int c=0; c<t.cols; c++){
@@ -52,13 +50,25 @@ matrix_t matrix_transpose(matrix_t m) {
 matrix_t matrix_multiply_transposed(matrix_t m1, matrix_t m2) { 
   assert(m1.cols == m2.cols);
   /* TODO */
-  matrix_t m = {0, 0, NULL};
-  return m;
+  matrix_t m = {m1.rows, m2.rows,  (double *) calloc(m1.rows*m2.rows,sizeof(double))};
+	double sum =0;
+	for(int r=0; r<m1.rows; r++){
+		for(int c=0; c<m2.rows; c++){
+			sum = 0;
+			for(int a=0; a<m1.cols; a++){
+				sum+= matrix_get(m1,r,a)*matrix_get(m2,c,a);
+			}
+			matrix_set(m, r,c, sum);		
+		}
+	}
+	return m;
 }
 
 matrix_t matrix_multiply_fast(matrix_t m1, matrix_t m2) { 
   /* TODO */
-  matrix_t result = {0, 0, NULL};
+	matrix_t  m2_t = matrix_transpose(m2);
+  matrix_t result = matrix_multiply_transposed(m1, m2_t);
+ // matrix_free(m2_t);
   return result;
 }
 

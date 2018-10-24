@@ -119,41 +119,16 @@ float task5SDF(vec3 pos){
     return unionSDF(torus_xySDF(pos), planeSDF(pos));
 }
 
-float torus_flatSDF(vec3 pos){ //xy plane for task 5, xz for task 4
-          vec2 q = vec2(length(pos.xz) - 3, pos.y);
-          return length(q) - 0.5;
-}
-
-float torus_vertSDF(vec3 pos){ //xy plane for task 5, xz for task 4
-          vec2 q = vec2(length(pos.xy) - 3, pos.z);
-          return length(q) - 0.5;
-}
-float torus_horizSDF(vec3 pos){ //xy plane for task 5, xz for task 4
-          vec2 q = vec2(length(pos.yz) - 3, pos.x);
-          return length(q) - 0.5;
-}
-
-float torus_interlockingSDF(vec3 pt){
-        pt = translate(pt, vec3(4,0,4));
-        float d =  unionSDF(torus_flatSDF( vec3(mod(pt.x,8)-4, pt.y, mod(pt.z+4,8)-4)),
-                    torus_vertSDF(vec3(mod(pt.x+4,8)-4, pt.y, mod(pt.z+4,8)-4)));
-             d = unionSDF(d,torus_horizSDF(vec3(mod(pt.x,8)-4, pt.y, mod(pt.z,8)-4)));
-            return d;
- }
-float task6SDF(vec3 pt){
-    return unionSDF(torus_interlockingSDF(pt), planeSDF(pt));
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 
 vec3 getNormal(vec3 pt) {
-  return normalize(GRADIENT(pt, task6SDF));
+  return normalize(GRADIENT(pt, task5SDF));
 }
 
 vec3 getColor(vec3 pt) {
     if(planeSDF(pt)<0.001){
-        float distance = mod(torus_interlockingSDF(pt),5);
+        float distance = mod(torus_xySDF(pt),5);
         if(distance>=4.75){
         return vec3(0,0,0);
         }
@@ -161,7 +136,7 @@ vec3 getColor(vec3 pt) {
         return vec3(0.4, mix(1,0.4,distance),mix(0.4,1,distance));
 
     }
-  return vec3(1);
+  return normalize(pt-vec3(0,3,0));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -170,7 +145,7 @@ float shadow(vec3 pt, vec3 lightDir){
     int step=0;
 
     for(float t=0.1; t< length(lightDir) && step<RENDER_DEPTH && kd>0.001;){
-        float d = abs(torus_interlockingSDF(pt+t*normalize(lightDir)));
+        float d = abs(torus_xySDF(pt+t*normalize(lightDir)));
         if(d<0.001){
             kd = 0;
         }
@@ -211,7 +186,7 @@ vec3 raymarch(vec3 camPos, vec3 rayDir) {
   float t = 0;
 
   for (float d = 1000; step < RENDER_DEPTH && abs(d) > CLOSE_ENOUGH; t += abs(d)) {
-      d = task6SDF(camPos + t * rayDir);
+      d = task5SDF(camPos + t * rayDir);
       step++;
     }
 

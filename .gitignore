@@ -1,4 +1,3 @@
-Further Graphics/tick/.idea/
-Further Graphics/tick/out/
-Further Graphics/tick/tick.iml
-
+*.iml
+*/.idea/
+*/out/

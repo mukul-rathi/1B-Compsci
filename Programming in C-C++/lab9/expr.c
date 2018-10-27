@@ -67,6 +67,7 @@ void print_expr(expr_t e) {
       printf("+");
       print_expr(e->data.args.snd);
       printf(")");
+			break;
     case TIMES: {
       printf("(");
       print_expr(e->data.args.fst);

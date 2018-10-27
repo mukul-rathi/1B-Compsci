@@ -22,6 +22,8 @@ public class StringChat {
 		}
 		// s is declared final because we want to ensure we remain connected to the same Socket
 		//not switching to a different socket - final prevents reassignment
+		// also final is thread-safe
+		// also for older versions of Java to get InputStream it needs to be final
 		try {
 			final Socket s = new Socket(server, port);
 
@@ -41,7 +43,7 @@ public class StringChat {
 				}
 			};
 
-			output.setDaemon(true); //TODO: Check documentation to see what this does.
+			output.setDaemon(true); //this is a daemon thread - JVM exits when user threads finish even if daemon threads are still running - i.e. it'll be abandoned when main program done. 
 			output.start();
 
 			BufferedReader r = new BufferedReader(new InputStreamReader(System.in));

@@ -12,7 +12,7 @@ int parse_int(char *s, int i, expr_t *result) {
     return -1;
   }
   while (s[i] >= '0' && s[i] <= '9') {
-    acc = acc * 10 + s[i];
+    acc = acc * 10 + (s[i]-'0');
     i++;
   } 
   *result = mkLit(acc);

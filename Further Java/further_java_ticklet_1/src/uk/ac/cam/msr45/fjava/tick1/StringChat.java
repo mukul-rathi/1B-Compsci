@@ -1,7 +1,5 @@
 package uk.ac.cam.msr45.fjava.tick1;
 
-//TODO: import appropriate classes here
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,7 +21,7 @@ public class StringChat {
 		// s is declared final because we want to ensure we remain connected to the same Socket
 		//not switching to a different socket - final prevents reassignment
 		// also final is thread-safe
-		// also for older versions of Java to get InputStream it needs to be final
+		// also for older versions of Java for an anonymous class to access a reference the reference needs to be final
 		try {
 			final Socket s = new Socket(server, port);
 
@@ -46,18 +44,17 @@ public class StringChat {
 			output.setDaemon(true); //this is a daemon thread - JVM exits when user threads finish even if daemon threads are still running - i.e. it'll be abandoned when main program done. 
 			output.start();
 
-			BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+			BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
 			OutputStream out = s.getOutputStream();
 			while (true)
 			{
-				//TODO: read data from the user, blocking until ready. Convert the
+				// read data from the user, blocking until ready. Convert the
 				//      string data from the user into an array of bytes and write
 				//      the array of bytes to "socket".
 				//
-				//Hint: call "r.readLine()" to read a new line of input from the user.
-				//      this call blocks until a user has written a complete line of text
+				//userInput.readLine()  call blocks until a user has written a complete line of text
 				//      and presses the enter key.
-				out.write(r.readLine().getBytes());
+				out.write(userInput.readLine().getBytes());
 
 			}
 		} catch (IOException e) {

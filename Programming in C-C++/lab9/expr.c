@@ -26,10 +26,12 @@ expr_t mkTimes(expr_t e1, expr_t e2) {
 }
 
 void free_expr(expr_t e) { 
-  if (e != NULL) { 
+  printf("e is : %p", (void *) e);
+	if (e != NULL) { 
     switch (e->type) { 
     case LIT:
       free(e);
+			break;
     case PLUS:
     case TIMES: {
       free_expr(e->data.args.fst);

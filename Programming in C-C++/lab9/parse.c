@@ -53,7 +53,7 @@ int parse_term(char *s, int i, expr_t *result) {
       *result = NULL;
       return -1;
     } else { 
-      e = mkPlus(e, e2);
+      e = mkTimes(e, e2);
     }
   }
   *result = e;

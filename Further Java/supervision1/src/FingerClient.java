@@ -17,7 +17,7 @@ public class FingerClient {
         Socket socket = new Socket(domain,79 );
 
         PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-        out.write(user+"<CRLF>");
+        out.write(user+"\r\n");
         out.flush();
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         while(in.readLine()!=null){

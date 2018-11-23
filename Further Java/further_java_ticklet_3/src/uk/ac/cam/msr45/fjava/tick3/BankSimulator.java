@@ -19,14 +19,24 @@ public class BankSimulator {
 			return acc;
 		}
 
-		public  void transferTo(BankAccount b, int amount) {
-			synchronized (this) { //acquire lock for b and this
-				balance -= amount;
-			}
-			synchronized (b) {
-				b.balance += amount;
-			}
+		public void transferTo(BankAccount b, int amount) {
+			//acquire locks for both b and this - but have ordering so no deadlock			
+			if(acc<b.acc){			
+				synchronized (this) { //acquire lock for b and this
+					synchronized (b) {
+						b.balance += amount;
+						balance -= amount;
+					}
+				}
 		}
+		else{
+				synchronized (b) { //acquire lock for b and this
+					synchronized (this) {
+						b.balance += amount;
+						balance -= amount;
+					}
+				}
+		}	
 	}
 
 	private static Random r = new Random();

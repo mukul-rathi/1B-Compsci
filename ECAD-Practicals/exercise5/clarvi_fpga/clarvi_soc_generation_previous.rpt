@@ -1,0 +1,109 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/ecad/ECAD-Arch/exercise5/clarvi_fpga/clarvi_soc.qsys --block-symbol-file --output-directory=/home/ecad/ECAD-Arch/exercise5/clarvi_fpga --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading clarvi_fpga/clarvi_soc.qsys
+Progress: Reading input file
+Progress: Adding EightBitsToSevenSeg_0 [EightBitsToSevenSeg 1.0]
+Progress: Parameterizing module EightBitsToSevenSeg_0
+Progress: Adding EightBitsToSevenSeg_1 [EightBitsToSevenSeg 1.0]
+Progress: Parameterizing module EightBitsToSevenSeg_1
+Progress: Adding EightBitsToSevenSeg_2 [EightBitsToSevenSeg 1.0]
+Progress: Parameterizing module EightBitsToSevenSeg_2
+Progress: Adding LEDs [altera_avalon_pio 16.1]
+Progress: Parameterizing module LEDs
+Progress: Adding PixelStream_0 [PixelStream 1.0]
+Progress: Parameterizing module PixelStream_0
+Progress: Adding TwentyFourBitSplitter_0 [TwentyFourBitSplitter 1.0]
+Progress: Parameterizing module TwentyFourBitSplitter_0
+Progress: Adding clarvi_0 [clarvi 1.0]
+Progress: Parameterizing module clarvi_0
+Progress: Adding clk_50 [clock_source 16.1]
+Progress: Parameterizing module clk_50
+Progress: Adding display_buttons [altera_avalon_pio 16.1]
+Progress: Parameterizing module display_buttons
+Progress: Adding hex_digits [altera_avalon_pio 16.1]
+Progress: Parameterizing module hex_digits
+Progress: Adding left_dial [altera_avalon_pio 16.1]
+Progress: Parameterizing module left_dial
+Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 16.1]
+Progress: Parameterizing module onchip_memory2_0
+Progress: Adding pll [altera_pll 16.1]
+Progress: Parameterizing module pll
+Progress: Adding right_dial [altera_avalon_pio 16.1]
+Progress: Parameterizing module right_dial
+Progress: Adding video_memory [altera_avalon_onchip_memory2 16.1]
+Progress: Parameterizing module video_memory
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Warning: clarvi_soc.TwentyFourBitSplitter_0: Port in conflicts with a VHDL, verilog or system verilog reserved word
+Info: clarvi_soc.display_buttons: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: clarvi_soc.left_dial: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: clarvi_soc.pll: The legal reference clock frequency is 5.0 MHz..800.0 MHz
+Info: clarvi_soc.pll: Able to implement PLL with user settings
+Info: clarvi_soc.right_dial: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: clarvi_soc.EightBitsToSevenSeg_0: EightBitsToSevenSeg_0.led_pins must be exported, or connected to a matching conduit.
+Warning: clarvi_soc.EightBitsToSevenSeg_1: EightBitsToSevenSeg_1.led_pins must be exported, or connected to a matching conduit.
+Warning: clarvi_soc.EightBitsToSevenSeg_2: EightBitsToSevenSeg_2.led_pins must be exported, or connected to a matching conduit.
+Warning: clarvi_soc.clarvi_0: clarvi_0.debug must be exported, or connected to a matching conduit.
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/ecad/ECAD-Arch/exercise5/clarvi_fpga/clarvi_soc.qsys --synthesis=VERILOG --output-directory=/home/ecad/ECAD-Arch/exercise5/clarvi_fpga/synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading clarvi_fpga/clarvi_soc.qsys
+Progress: Reading input file
+Progress: Adding EightBitsToSevenSeg_0 [EightBitsToSevenSeg 1.0]
+Progress: Parameterizing module EightBitsToSevenSeg_0
+Progress: Adding EightBitsToSevenSeg_1 [EightBitsToSevenSeg 1.0]
+Progress: Parameterizing module EightBitsToSevenSeg_1
+Progress: Adding EightBitsToSevenSeg_2 [EightBitsToSevenSeg 1.0]
+Progress: Parameterizing module EightBitsToSevenSeg_2
+Progress: Adding LEDs [altera_avalon_pio 16.1]
+Progress: Parameterizing module LEDs
+Progress: Adding PixelStream_0 [PixelStream 1.0]
+Progress: Parameterizing module PixelStream_0
+Progress: Adding TwentyFourBitSplitter_0 [TwentyFourBitSplitter 1.0]
+Progress: Parameterizing module TwentyFourBitSplitter_0
+Progress: Adding clarvi_0 [clarvi 1.0]
+Progress: Parameterizing module clarvi_0
+Progress: Adding clk_50 [clock_source 16.1]
+Progress: Parameterizing module clk_50
+Progress: Adding display_buttons [altera_avalon_pio 16.1]
+Progress: Parameterizing module display_buttons
+Progress: Adding hex_digits [altera_avalon_pio 16.1]
+Progress: Parameterizing module hex_digits
+Progress: Adding left_dial [altera_avalon_pio 16.1]
+Progress: Parameterizing module left_dial
+Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 16.1]
+Progress: Parameterizing module onchip_memory2_0
+Progress: Adding pll [altera_pll 16.1]
+Progress: Parameterizing module pll
+Progress: Adding right_dial [altera_avalon_pio 16.1]
+Progress: Parameterizing module right_dial
+Progress: Adding video_memory [altera_avalon_onchip_memory2 16.1]
+Progress: Parameterizing module video_memory
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Warning: clarvi_soc.TwentyFourBitSplitter_0: Port in conflicts with a VHDL, verilog or system verilog reserved word
+Info: clarvi_soc.display_buttons: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: clarvi_soc.left_dial: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Info: clarvi_soc.pll: The legal reference clock frequency is 5.0 MHz..800.0 MHz
+Info: clarvi_soc.pll: Able to implement PLL with user settings
+Info: clarvi_soc.right_dial: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: clarvi_soc.EightBitsToSevenSeg_0: EightBitsToSevenSeg_0.led_pins must be exported, or connected to a matching conduit.
+Warning: clarvi_soc.EightBitsToSevenSeg_1: EightBitsToSevenSeg_1.led_pins must be exported, or connected to a matching conduit.
+Warning: clarvi_soc.EightBitsToSevenSeg_2: EightBitsToSevenSeg_2.led_pins must be exported, or connected to a matching conduit.
+Warning: clarvi_soc.clarvi_0: clarvi_0.debug must be exported, or connected to a matching conduit.
+Info: clarvi_soc: Generating clarvi_soc "clarvi_soc" for QUARTUS_SYNTH
+Info: Interconnect is inserted between master clarvi_0.instr and slave onchip_memory2_0.s2 because the master has read signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master clarvi_0.instr and slave onchip_memory2_0.s2 because the master has waitrequest signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master clarvi_0.instr and slave onchip_memory2_0.s2 because the master has readdatavalid signal 1 bit wide, but the slave is 0 bit wide.
+Warning: clarvi_0.interrupt_receiver_0: Cannot connect clock for irq_mapper.sender
+Warning: clarvi_0.interrupt_receiver_0: Cannot connect reset for irq_mapper.sender
+Error: Generation stopped, 18 or more modules remaining
+Info: clarvi_soc: Done "clarvi_soc" with 16 modules, 1 files
+Error: qsys-generate failed with exit code 1: 1 Error, 7 Warnings
+Info: Stopping: Create HDL design files for synthesis

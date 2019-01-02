@@ -1,0 +1,269 @@
+do clarvi_test.do ../example-c/build/mem.txt
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:51 on Nov 13,2018
+# vlog -reportprogress 300 clarvi.sv 
+# -- Compiling package clarvi_sv_unit
+# -- Compiling module clarvi
+# 
+# Top level modules:
+# 	clarvi
+# End time: 14:24:52 on Nov 13,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:52 on Nov 13,2018
+# vlog -reportprogress 300 clarvi_avalon.sv 
+# -- Compiling module clarvi_avalon
+# 
+# Top level modules:
+# 	clarvi_avalon
+# End time: 14:24:52 on Nov 13,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:52 on Nov 13,2018
+# vlog -reportprogress 300 bram.sv 
+# -- Compiling module dual_port_bram
+# 
+# Top level modules:
+# 	dual_port_bram
+# End time: 14:24:52 on Nov 13,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:52 on Nov 13,2018
+# vlog -reportprogress 300 clarvi_sim.sv 
+# -- Compiling module clarvi_sim
+# -- Compiling module memory_debug
+# -- Compiling module mock_waitrequest
+# -- Compiling module mock_interrupt
+# 
+# Top level modules:
+# 	clarvi_sim
+# 	mock_waitrequest
+# 	mock_interrupt
+# End time: 14:24:52 on Nov 13,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim work.clarvi_sim -t ns -voptargs="+acc=npr" -GINIT_FILE=../example-c/build/mem.txt 
+# Start time: 14:24:52 on Nov 13,2018
+# Loading sv_std.std
+# Loading work.clarvi_sim
+# Loading work.dual_port_bram
+# Loading work.memory_debug
+# Loading work.clarvi_avalon
+# Loading work.clarvi_sv_unit
+# Loading work.clarvi
+run -all
+# HEX write, address 04000080, data 00000003
+# HEX write, address 04000080, data 00000495
+# HEX write, address 04000080, data 00000989
+# HEX write, address 04000080, data 00001482
+# HEX write, address 04000080, data 00001975
+# HEX write, address 04000080, data 00002469
+# HEX write, address 04000080, data 00002963
+# HEX write, address 04000080, data 00003457
+# HEX write, address 04000080, data 00003951
+# HEX write, address 04000080, data 00004445
+# HEX write, address 04000080, data 00004939
+# HEX write, address 04000080, data 00005432
+# HEX write, address 04000080, data 00005926
+# HEX write, address 04000080, data 00010420
+# HEX write, address 04000080, data 00010913
+# HEX write, address 04000080, data 00011407
+# HEX write, address 04000080, data 00011900
+# HEX write, address 04000080, data 00012394
+# HEX write, address 04000080, data 00012888
+# HEX write, address 04000080, data 00013382
+# HEX write, address 04000080, data 00013876
+# HEX write, address 04000080, data 00014370
+# HEX write, address 04000080, data 00014864
+# HEX write, address 04000080, data 00015358
+# HEX write, address 04000080, data 00015853
+# HEX write, address 04000080, data 00020347
+# HEX write, address 04000080, data 00020841
+# HEX write, address 04000080, data 00021334
+# HEX write, address 04000080, data 00021828
+# HEX write, address 04000080, data 00022321
+# HEX write, address 04000080, data 00022815
+# HEX write, address 04000080, data 00023309
+# HEX write, address 04000080, data 00023803
+# HEX write, address 04000080, data 00024297
+# HEX write, address 04000080, data 00024791
+# HEX write, address 04000080, data 00025285
+# HEX write, address 04000080, data 00025779
+# HEX write, address 04000080, data 00030274
+# HEX write, address 04000080, data 00030768
+# HEX write, address 04000080, data 00031262
+# HEX write, address 04000080, data 00031756
+# HEX write, address 04000080, data 00032250
+# HEX write, address 04000080, data 00032744
+# HEX write, address 04000080, data 00033239
+# HEX write, address 04000080, data 00033733
+# HEX write, address 04000080, data 00034227
+# HEX write, address 04000080, data 00034722
+# HEX write, address 04000080, data 00035216
+# HEX write, address 04000080, data 00035710
+# HEX write, address 04000080, data 00040204
+# HEX write, address 04000080, data 00040698
+# HEX write, address 04000080, data 00041191
+# HEX write, address 04000080, data 00041686
+# HEX write, address 04000080, data 00042179
+# HEX write, address 04000080, data 00042674
+# HEX write, address 04000080, data 00043168
+# HEX write, address 04000080, data 00043662
+# HEX write, address 04000080, data 00044156
+# HEX write, address 04000080, data 00044650
+# HEX write, address 04000080, data 00045145
+# HEX write, address 04000080, data 00045639
+# HEX write, address 04000080, data 00050133
+# HEX write, address 04000080, data 00050627
+# HEX write, address 04000080, data 00051121
+# HEX write, address 04000080, data 00051615
+# HEX write, address 04000080, data 00052109
+# HEX write, address 04000080, data 00052602
+# HEX write, address 04000080, data 00053096
+# HEX write, address 04000080, data 00053590
+# HEX write, address 04000080, data 00054085
+# HEX write, address 04000080, data 00054579
+# HEX write, address 04000080, data 00055074
+# HEX write, address 04000080, data 00055569
+# HEX write, address 04000080, data 00060063
+# HEX write, address 04000080, data 00060557
+# HEX write, address 04000080, data 00061052
+# HEX write, address 04000080, data 00061546
+# HEX write, address 04000080, data 00062040
+# HEX write, address 04000080, data 00062534
+# HEX write, address 04000080, data 00063028
+# HEX write, address 04000080, data 00063523
+# HEX write, address 04000080, data 00064017
+# HEX write, address 04000080, data 00064511
+# HEX write, address 04000080, data 00065005
+# HEX write, address 04000080, data 00065499
+# HEX write, address 04000080, data 00065994
+# HEX write, address 04000080, data 00070489
+# HEX write, address 04000080, data 00070982
+# HEX write, address 04000080, data 00071477
+# HEX write, address 04000080, data 00071971
+# HEX write, address 04000080, data 00072466
+# HEX write, address 04000080, data 00072961
+# HEX write, address 04000080, data 00073455
+# HEX write, address 04000080, data 00073950
+# HEX write, address 04000080, data 00074445
+# HEX write, address 04000080, data 00074939
+# HEX write, address 04000080, data 00075434
+# HEX write, address 04000080, data 00075929
+# HEX write, address 04000080, data 00080424
+# HEX write, address 04000080, data 00080917
+# HEX write, address 04000080, data 00081411
+# HEX write, address 04000080, data 00081905
+# HEX write, address 04000080, data 00082399
+# HEX write, address 04000080, data 00082894
+# HEX write, address 04000080, data 00083388
+# HEX write, address 04000080, data 00083882
+# HEX write, address 04000080, data 00084376
+# HEX write, address 04000080, data 00084870
+# HEX write, address 04000080, data 00085364
+# HEX write, address 04000080, data 00085858
+# HEX write, address 04000080, data 00090352
+# HEX write, address 04000080, data 00090846
+# HEX write, address 04000080, data 00091340
+# HEX write, address 04000080, data 00091834
+# HEX write, address 04000080, data 00092328
+# HEX write, address 04000080, data 00092822
+# HEX write, address 04000080, data 00093316
+# HEX write, address 04000080, data 00093810
+# HEX write, address 04000080, data 00094304
+# HEX write, address 04000080, data 00094798
+# HEX write, address 04000080, data 00095293
+# HEX write, address 04000080, data 00095787
+# HEX write, address 04000080, data 00100282
+# HEX write, address 04000080, data 00100776
+# HEX write, address 04000080, data 00101270
+# HEX write, address 04000080, data 00101765
+# HEX write, address 04000080, data 00102259
+# HEX write, address 04000080, data 00102754
+# HEX write, address 04000080, data 00103249
+# HEX write, address 04000080, data 00103743
+# HEX write, address 04000080, data 00104238
+# HEX write, address 04000080, data 00104732
+# HEX write, address 04000080, data 00105227
+# HEX write, address 04000080, data 00105721
+# HEX write, address 04000080, data 00110216
+# HEX write, address 04000080, data 00110710
+# HEX write, address 04000080, data 00111204
+# HEX write, address 04000080, data 00111698
+# HEX write, address 04000080, data 00112192
+# HEX write, address 04000080, data 00112687
+# HEX write, address 04000080, data 00113182
+# HEX write, address 04000080, data 00113677
+# HEX write, address 04000080, data 00114172
+# HEX write, address 04000080, data 00114667
+# HEX write, address 04000080, data 00115161
+# HEX write, address 04000080, data 00115657
+# HEX write, address 04000080, data 00120152
+# HEX write, address 04000080, data 00120646
+# HEX write, address 04000080, data 00121140
+# HEX write, address 04000080, data 00121634
+# HEX write, address 04000080, data 00122129
+# HEX write, address 04000080, data 00122623
+# HEX write, address 04000080, data 00123118
+# HEX write, address 04000080, data 00123612
+# HEX write, address 04000080, data 00124107
+# HEX write, address 04000080, data 00124601
+# HEX write, address 04000080, data 00125095
+# HEX write, address 04000080, data 00125590
+# HEX write, address 04000080, data 00130085
+# HEX write, address 04000080, data 00130579
+# HEX write, address 04000080, data 00131074
+# HEX write, address 04000080, data 00131569
+# HEX write, address 04000080, data 00132064
+# HEX write, address 04000080, data 00132558
+# HEX write, address 04000080, data 00133053
+# HEX write, address 04000080, data 00133548
+# HEX write, address 04000080, data 00134043
+# HEX write, address 04000080, data 00134537
+# HEX write, address 04000080, data 00135032
+# HEX write, address 04000080, data 00135527
+# HEX write, address 04000080, data 00140022
+# HEX write, address 04000080, data 00140516
+# HEX write, address 04000080, data 00141010
+# HEX write, address 04000080, data 00141504
+# HEX write, address 04000080, data 00141999
+# HEX write, address 04000080, data 00142494
+# HEX write, address 04000080, data 00142988
+# HEX write, address 04000080, data 00143483
+# HEX write, address 04000080, data 00143978
+# HEX write, address 04000080, data 00144473
+# HEX write, address 04000080, data 00144968
+# HEX write, address 04000080, data 00145463
+# HEX write, address 04000080, data 00145959
+# HEX write, address 04000080, data 00150454
+# HEX write, address 04000080, data 00150949
+# HEX write, address 04000080, data 00151443
+# HEX write, address 04000080, data 00151938
+# HEX write, address 04000080, data 00152433
+# HEX write, address 04000080, data 00152928
+# HEX write, address 04000080, data 00153423
+# HEX write, address 04000080, data 00153918
+# HEX write, address 04000080, data 00154413
+# HEX write, address 04000080, data 00154907
+# HEX write, address 04000080, data 00155402
+# HEX write, address 04000080, data 00155897
+# HEX write, address 04000080, data 00160392
+# HEX write, address 04000080, data 00160887
+# HEX write, address 04000080, data 00161380
+# HEX write, address 04000080, data 00161875
+# HEX write, address 04000080, data 00162369
+# HEX write, address 04000080, data 00162864
+# HEX write, address 04000080, data 00163358
+# HEX write, address 04000080, data 00163853
+# HEX write, address 04000080, data 00164348
+# HEX write, address 04000080, data 00164842
+# HEX write, address 04000080, data 00165336
+# HEX write, address 04000080, data 00165831
+# HEX write, address 04000080, data 00170326
+# HEX write, address 04000080, data 00170821
+# HEX write, address 04000080, data 00171314
+# HEX write, address 04000080, data 00171808
+# HEX write, address 04000080, data 00172302
+# HEX write, address 04000080, data 00172796
+# HEX write, address 04000080, data 00173290
+# HEX write, address 04000080, data 00173785

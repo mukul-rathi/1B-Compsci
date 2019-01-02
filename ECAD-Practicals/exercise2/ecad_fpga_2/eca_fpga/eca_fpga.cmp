@@ -1,0 +1,9 @@
+	component eca_fpga is
+		port (
+			clk_clk                             : in  std_logic := 'X'; -- clk
+			reset_reset_n                       : in  std_logic := 'X'; -- reset_n
+			rotaryctl_0_rotary_event_rotary_cw  : out std_logic;        -- rotary_cw
+			rotaryctl_0_rotary_event_rotary_ccw : out std_logic         -- rotary_ccw
+		);
+	end component eca_fpga;
+

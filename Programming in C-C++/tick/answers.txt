@@ -1,0 +1,4 @@
+The server reads a message from a file and then sends it to the client over a network port. 
+The client also uses a socket to connect to that network port and print out the contents to standard out.
+
+ 

@@ -1,4 +1,25 @@
 The server reads a message from a file and then sends it to the client over a network port. 
 The client also uses a socket to connect to that network port and print out the contents to standard out.
 
- 
+ Errors:
+
+ Server.c: 
+    if (argc != 2) {
+    puts("Usage: server <port> <file>");
+    return 1;
+  }
+  This should be argc!=3, since argc =3 if two arguments passed in via command line, since argv[0] = program name.
+
+    for(;;){
+    
+    There shouldn't be an infinite for loop
+
+    int r,w;
+
+    variable w is not initialised (should be initialised to 0)
+
+Client.c:
+    return 1;
+     
+    at end of main method, this return statement should be return 0, since the method executed successfully, not an error code 1.
+

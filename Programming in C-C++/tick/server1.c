@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
   FILE *fp;
   struct sockaddr_in server;
   
-  if (argc != 2) {
+  if (argc != 3) {
     puts("Usage: server <port> <file>");
     return 1;
   }
@@ -46,7 +46,6 @@ int main(int argc, char *argv[]) {
     return 5;
   }
 
-  for(;;) {
 
   if ( (connfd = accept(listenfd, (struct sockaddr *) NULL, NULL)) < 0 ) {
     perror("Error accepting a client connection");
@@ -55,7 +54,7 @@ int main(int argc, char *argv[]) {
 
   while(!feof(fp)) {
     char bytes[BUFSIZE];
-    int r,w;
+    int r,w =0;
 
     r = fread(bytes,sizeof(char),BUFSIZE,fp);
 

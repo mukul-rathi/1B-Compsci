@@ -51,17 +51,19 @@ int main(int argc, char *argv[]) {
     tcp1.dataOffset = temp2 >> 4;
     
     int numPackets = 0;
+    fseek(fp, 0, SEEK_END);
+    long int fileSize = ftell(fp); 
     fseek(fp,0,SEEK_SET);
 
-    while(!feof(fp)) {
+    long int offset = 0;
+    while(offset<fileSize) {
+      fseek(fp,offset,SEEK_SET);
       uint8_t temp3[4];
       fread(&temp3,sizeof(char),4,fp);
-      int length = (temp3[2]<<4) + temp3[3];
-      uint8_t temp4;
-      for(int i=0; i<(length-4); i++){
-         fread(&temp4,sizeof(char),1,fp);
-      } 
+      printf(" Packet length: %d %d \n", temp3[2], temp3[3]);
+      int packetLength = (temp3[2]<<4) + temp3[3];
       numPackets++;
+      offset+=packetLength;
     }
 
 

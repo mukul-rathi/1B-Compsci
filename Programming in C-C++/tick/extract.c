@@ -30,35 +30,37 @@ int main(int argc, char *argv[]) {
   struct tcpheader{
     unsigned int dataOffset : 4;
   } tcp1;
-   fseek(fp,0,SEEK_SET);
+    fseek(fp,0,SEEK_SET);
     fseek(fp2,0,SEEK_SET);
 
-    while(!feof(fp)) {
+    fseek(fp, 0, SEEK_END);
+    long int fileSize = ftell(fp); 
+    fseek(fp,0,SEEK_SET);
+
+    long int offset = 0;
+    
+    while(offset<fileSize) {
+      fseek(fp,offset,SEEK_SET);
       uint8_t temp[20];
 
       fread(&temp,sizeof(char),20,fp);
       ip1.headerLength = temp[0] & (uint8_t) 7; // get lower 4 bits
       ip1.total_length = (temp[2] <<4) + temp[3];
-      uint8_t ignore;
-      for(int i=0; i< 4*(ip1.headerLength-5); i++){
-         fread(&ignore,sizeof(char),1,fp);
-      }
+      fseek(fp,offset + 4*ip1.headerLength,SEEK_SET);
       //seek to end of ip header
-      
       fread(&temp,sizeof(char),20,fp);
 
       tcp1.dataOffset = temp[12] >> 4;
+      fseek(fp,offset + 4*(ip1.headerLength + tcp1.dataOffset),SEEK_SET);
 
-      for(int i=0; i< (4*tcp1.dataOffset)-20; i++){
-          fread(&ignore,sizeof(char),1,fp);
-      }
       int dataLength = ip1.total_length-4*(ip1.headerLength + tcp1.dataOffset);
       uint8_t data[dataLength];
       fread(&data,sizeof(char),dataLength,fp);
 
       fwrite(data, 1, dataLength, fp2);
+      offset+=ip1.total_length;
     }
-
+  
 
 
 }

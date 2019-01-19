@@ -41,13 +41,16 @@ int main(int argc, char *argv[]) {
     
     while(offset<fileSize) {
       fseek(fp,offset,SEEK_SET);
-      uint8_t temp[20];
-
-      fread(&temp,sizeof(char),20,fp);
-      ip1.headerLength = temp[0] & (uint8_t) 7; // get lower 4 bits
-      ip1.total_length = (temp[2] <<4) + temp[3];
+      uint8_t headerLen[2];
+      fread(&headerLen,sizeof(char),2,fp);
+      ip1.headerLength = headerLen[0] & (uint8_t) 7; // get lower 4 bits
+      uint16_t totalLen;
+      fread(&totalLen, sizeof(uint16_t),1,fp); 
+      ip1.total_length = ntohs(totalLen);
       fseek(fp,offset + 4*ip1.headerLength,SEEK_SET);
       //seek to end of ip header
+
+      uint8_t temp[20];
       fread(&temp,sizeof(char),20,fp);
 
       tcp1.dataOffset = temp[12] >> 4;

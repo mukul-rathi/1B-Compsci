@@ -57,11 +57,10 @@ int main(int argc, char *argv[]) {
 
     long int offset = 0;
     while(offset<fileSize) {
-      fseek(fp,offset,SEEK_SET);
-      uint8_t temp3[4];
-      fread(&temp3,sizeof(char),4,fp);
-      printf(" Packet length: %d %d \n", temp3[2], temp3[3]);
-      int packetLength = (temp3[2]<<4) + temp3[3];
+      fseek(fp,offset+2,SEEK_SET);
+      uint16_t test;
+      fread(&test,sizeof(uint16_t),1,fp);
+      int packetLength = ntohs(test);
       numPackets++;
       offset+=packetLength;
     }

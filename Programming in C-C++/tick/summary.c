@@ -44,11 +44,11 @@ int main(int argc, char *argv[]) {
     }
     fseek(fp, 4*(ip1.headerLength-5), SEEK_CUR); //seek to end of ip header
 
-    fseek(fp, 12,SEEK_CUR);
+    fseek(fp, 12,SEEK_CUR); //seek to data offset within tcp header
 
     uint8_t temp2; 
     fread(&temp2,sizeof(char),1,fp);
-    tcp1.dataOffset = temp2 >> 4;
+    tcp1.dataOffset = temp2 >> 4; //get top 4 bits
     
     int numPackets = 0;
     fseek(fp, 0, SEEK_END);
@@ -58,9 +58,9 @@ int main(int argc, char *argv[]) {
     long int offset = 0;
     while(offset<fileSize) {
       fseek(fp,offset+2,SEEK_SET);
-      uint16_t test;
-      fread(&test,sizeof(uint16_t),1,fp);
-      int packetLength = ntohs(test);
+      uint16_t tmp;
+      fread(&tmp,sizeof(uint16_t),1,fp);
+      int packetLength = ntohs(tmp);
       numPackets++;
       offset+=packetLength;
     }

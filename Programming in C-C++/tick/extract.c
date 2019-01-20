@@ -47,14 +47,14 @@ int main(int argc, char *argv[]) {
       uint16_t totalLen;
       fread(&totalLen, sizeof(uint16_t),1,fp); 
       ip1.total_length = ntohs(totalLen);
-      fseek(fp,offset + 4*ip1.headerLength,SEEK_SET);
+      fseek(fp,offset + 4*ip1.headerLength,SEEK_SET); //headerLength=num of 32 bit words, so 4* headerlenght = size in bytes
       //seek to end of ip header
 
       uint8_t temp[20];
       fread(&temp,sizeof(char),20,fp);
 
-      tcp1.dataOffset = temp[12] >> 4;
-      fseek(fp,offset + 4*(ip1.headerLength + tcp1.dataOffset),SEEK_SET);
+      tcp1.dataOffset = temp[12] >> 4; //get top 4 bits
+      fseek(fp,offset + 4*(ip1.headerLength + tcp1.dataOffset),SEEK_SET); //go to start of data (end of IP+TCP header)
 
       int dataLength = ip1.total_length-4*(ip1.headerLength + tcp1.dataOffset);
       uint8_t data[dataLength];

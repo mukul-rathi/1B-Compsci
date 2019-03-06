@@ -1,4 +1,3 @@
-quicksort([], []).
 partition([], [], [], _).
 partition([H|A],[H|L], R, X) :- H=<X, !, partition(A, L, R, X). 
 partition([H|A],L, [H|R], X) :- partition(A, L, R, X).
